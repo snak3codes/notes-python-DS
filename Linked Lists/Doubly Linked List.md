@@ -135,19 +135,94 @@ Delete Node
 
 3\. Deleting node other than head where **curr.next** is not **None**
 
-4\. Deleting node other than head where **curr.next** is **None**
+4\. Deleting node other than head where **curr.next** is **None **(deleting last node)
 
 ```python
-# Case 1
+# Case 1: Deleting only node present
 def delete(self, key):
     curr = self.head
     while curr:
-        if curr.data == key and curr == self.head and not curr.next:
-            curr = None
-            self.head = None
-            return
+        if curr.data == key and curr == self.head:
+            # 1.
+            if not curr.next:
+                curr = None
+                self.head = None
+                return
         curr = curr.next
 ```
+
+```python
+# Case 2: Deleting Head Node
+def delete(self, key):
+    curr = self.head
+    while curr:
+        if curr.data == key and curr == self.head:
+            # 1.
+            if not curr.next:
+                curr = None
+                self.head = None
+                return
+            # 2.
+            else:
+                nxt = curr.next
+                curr.next = None
+                nxt.prev = None
+                curr = None
+                self.head = nxt
+                return
+        curr = curr.next
+
+"""
+Example: None<- A <-> B -> None
+nxt = B
+curr.next = None   (A-> None)
+nxt.prev = None    (None <-B)
+curr = None        (A = None)
+self.head = nxt    (None <-B-> None) (B is HEAD)
+... else continue traversing.
+"""
+```
+
+![](resources/A763B4525B12E94C7E58FD36594CC3E2.jpg)
+
+```python
+# Case 3: Deleting node other than head where curr.next is not None
+def delete(self, key):
+    curr = self.head
+    while curr:
+        if curr.data == key and curr == self.head:
+            # 1.
+            if not curr.next:
+                curr = None
+                self.head = None
+                return
+            # 2.
+            else:
+                nxt = curr.next
+                curr.next = None
+                nxt.prev = None
+                curr = None
+                self.head = nxt
+                return
+        elif curr.data == key:
+            # 3.
+            if curr.next:
+                nxt = curr.next
+                prev = curr.prev
+                prev.next = nxt
+                nxt.prev = prev
+                curr.next = None
+                curr.prev = None
+                curr = None
+                return
+        curr = curr.next
+```
+
+![](resources/0612312213B76A6B20ABA400265A6A7A.jpg)
+
+
+
+
 
 
 
