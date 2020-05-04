@@ -220,9 +220,67 @@ def delete(self, key):
 
 ![](resources/0612312213B76A6B20ABA400265A6A7A.jpg)
 
+```python
+# Case 4: Deleting node other than head where curr.next is None (deleting last node)
+def delete(self, key):
+    curr = self.head
+    while curr:
+        if curr.data == key and curr == self.head:
+            # 1.
+            if not curr.next:
+                curr = None
+                self.head = None
+                return
+            # 2.
+            else:
+                nxt = curr.next
+                curr.next = None
+                nxt.prev = None
+                curr = None
+                self.head = nxt
+                return
+        elif curr.data == key:
+            # 3.
+            if curr.next:
+                nxt = curr.next
+                prev = curr.prev
+                prev.next = nxt
+                nxt.prev = prev
+                curr.next = None
+                curr.prev = None
+                curr = None
+                return
+            if not curr.next:
+                prev = curr.prev
+                prev.next = None
+                curr.prev = None
+                curr = None
+                return
+        curr = curr.next
+```
 
+![](resources/28155E8B9A1C7F0035A812082244D5D6.jpg)
 
+Reverse
+-------
 
+💡 To reverse a doubly linked list, we need to switch the **next** and the **previous** pointers of every node. Also, we need to switch the last node with the head node of the linked list.
 
+```python
+def reverse(self):
+    tmp = None
+    curr = self.head
+    while curr:
+        tmp = curr.prev
+        curr.prev = curr.next
+        curr.next = tmp
+        curr = curr.prev
+    if tmp:
+        self.head = tmp.prev
+```
 
+Remove Duplicates
+-----------------
+
+None\<-**1**\<-\>**4**\<-\>**7**\<-\>**4**-\>None
 
