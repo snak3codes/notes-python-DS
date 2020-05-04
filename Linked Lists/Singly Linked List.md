@@ -361,19 +361,52 @@ def move_tail_to_head(self):
 Sum Two Linked Lists
 --------------------
 
-
-
-
-
-
-
-
-
-
-
-
-
-
+```python
+def sum_two_lists(self, llist):
+        num1 = ""
+        curr = self.head
+        while curr is not None:
+            num1 += str(curr.data)
+            curr = curr.next
+        num2 = ""
+        curr = llist.head
+        while curr is not None:
+            num2 += str(curr.data)
+            curr = curr.next
+        num1 = num1[::-1]
+        num2 = num2[::-1]
+        return int(num1) + int(num2)
+    
+def sum_two_lists_S(self, llist):
+    p = self.head
+    q = llist.head
+    
+    sum_llist = LinkedList()
+    
+    carry = 0
+    while p or q:
+        if not p:
+            i = 0
+        else:
+            i = p.data
+        if not q:
+            j = 0
+        else:
+            j = q.data
+        s = i + j + carry
+        if s >= 10:
+            carry = 1
+            remainder = s % 10
+            sum_llist.append(remainder)
+        else:
+            carry = 0
+            sum_llist.append(s)
+        if p:
+            p = p.next
+        if q:
+            q = q.next
+    return sum_llist
+```
 
 Complete Code
 -------------
