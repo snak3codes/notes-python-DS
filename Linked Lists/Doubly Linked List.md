@@ -122,8 +122,6 @@ def add_before_node(self, key, data):
                 new_node.prev = prev_tmp
                 return
             curr = curr.next
-            # FIX: Does not work when 
-            # Adding node before last node
 ```
 
 Delete Node
