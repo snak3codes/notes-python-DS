@@ -48,7 +48,7 @@ def print_list(self):
     while curr:
         print(curr.data)
         curr = curr.next
-        break if curr = self.head else pass
+        break if curr == self.head else pass
 ```
 
 Prepend
