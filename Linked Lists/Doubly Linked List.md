@@ -110,7 +110,7 @@ Add Node Before
 def add_before_node(self, key, data):
         curr = self.head
         while curr:
-            if curr.next is None and curr.data == key:
+            if curr.prev is None and curr.data == key:
                 self.prepend(data)
                 return
             elif curr.data == key:
